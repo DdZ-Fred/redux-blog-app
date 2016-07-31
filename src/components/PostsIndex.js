@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { fetchPosts } from '../actions';
 
@@ -20,9 +21,10 @@ class PostsIndex extends Component {
 
     return (
       <div>
-        <div>List of blog posts</div>
-        <ul>
-        </ul>
+        <div className="text-right">
+          <Link to="/posts/new" className="btn btn-primary">Add post</Link>
+        </div>
+        List of blog posts
       </div>
     );
   }
