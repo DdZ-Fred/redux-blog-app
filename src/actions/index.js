@@ -5,6 +5,7 @@ const BASE_URL = 'http://reduxblog.herokuapp.com/api';
 
 export const FETCH_POSTS = 'FETCH_POSTS';
 export const CREATE_POST = 'CREATE_POST';
+export const FETCH_POST = 'FETCH_POST';
 
 
 export function fetchPosts() {
@@ -24,6 +25,17 @@ export function createPost(props) {
   });
   return {
     type: CREATE_POST,
+    payload: request,
+  };
+}
+
+export function fetchPost(id) {
+  const request = axios.get(`/posts/${id}${API_KEY}`, {
+    baseURL: BASE_URL,
+  });
+
+  return {
+    type: FETCH_POST,
     payload: request,
   };
 }

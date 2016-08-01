@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { fetchPosts } from '../actions';
 
 const propTypes = {
-  posts: PropTypes.object.isRequired,
+  posts: PropTypes.array.isRequired,
 };
 
 class PostsIndex extends Component {
@@ -14,17 +14,27 @@ class PostsIndex extends Component {
     this.props.fetchPosts();
   }
 
-  render() {
-    // const posts = this.props.posts.all.map((p) => (
-    //   <li>p</li>
-    // ));
+  renderPosts() {
+    return this.props.posts.map((post) => (
+      <li key={post.id} className="list-group-item">
+      <Link to={`/posts/${post.id}`}>
+        <span className="pull-right">{post.categories}</span>
+        <strong>{post.title}</strong>
+      </Link>
+      </li>
+    ));
+  }
 
+  render() {
     return (
       <div>
         <div className="text-right">
           <Link to="/posts/new" className="btn btn-primary">Add post</Link>
         </div>
-        List of blog posts
+        <h3>Posts</h3>
+        <ul className="list-group">
+          {this.renderPosts()}
+        </ul>
       </div>
     );
   }
@@ -35,7 +45,7 @@ PostsIndex.propTypes = propTypes;
 
 function mapStateToProps(state) {
   return {
-    posts: state.posts,
+    posts: state.posts.all,
   };
 }
 

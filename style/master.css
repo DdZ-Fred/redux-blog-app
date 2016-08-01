@@ -1,0 +1,7 @@
+form a.btn-danger {
+  margin-left: 10px;
+}
+
+li.list-group-item:hover {
+  background-color: rgb(212, 212, 212);
+}
